@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductTagController;
 use App\Http\Controllers\Admin\PromocodeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([ 'middleware' => 'isAdmin', 'prefix' => 'admin', 'as' => 'admin.' ],function(){
@@ -21,6 +22,10 @@ Route::group([ 'middleware' => 'isAdmin', 'prefix' => 'admin', 'as' => 'admin.' 
     Route::resource('payments', PaymentController::class);
 });
 
-Auth::routes();
+Route::group(['prefix' => 'auth'], function () {
+    Auth::routes();
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('{page}', [IndexController::class, 'index'])->where('page','^(?!auth|admin).*$');
+

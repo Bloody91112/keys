@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="43" viewBox="0 0 54 43">
+    <defs>
+        <mask id="hkhkb" width="2.02" height="2.03" x="-1.01" y="-1.02">
+            <path fill="#fff" d="M6.5 6.5h41v30h-41z"></path>
+            <path
+                d="M8.5 33h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3zm0-13h37a1.5 1.5 0 1 1 0 3h-37a1.5 1.5 0 1 1 0-3zm0-13h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3z"></path>
+        </mask>
+        <filter id="hkhka" width="78.2" height="67.2" x="-12.1" y="-12.1" filterUnits="userSpaceOnUse">
+            <feOffset in="SourceGraphic" result="FeOffset1093Out"></feOffset>
+            <feGaussianBlur in="FeOffset1093Out" result="FeGaussianBlur1094Out"
+                            stdDeviation="3.44 3.44"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g>
+        <g>
+            <g filter="url(#hkhka)">
+                <path fill="none" stroke="#2592ee" stroke-opacity=".9"
+                      d="M8.5 33h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3zm0-13h37a1.5 1.5 0 1 1 0 3h-37a1.5 1.5 0 1 1 0-3zm0-13h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3z"
+                      mask="url(&quot;#hkhkb&quot;)"></path>
+                <path fill="#2592ee" fill-opacity=".9"
+                      d="M8.5 33h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3zm0-13h37a1.5 1.5 0 1 1 0 3h-37a1.5 1.5 0 1 1 0-3zm0-13h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3z"></path>
+            </g>
+            <g filter="url(#hkhka)">
+                <path fill="none" stroke="#2592ee" stroke-opacity=".9"
+                      d="M8.5 33h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3zm0-13h37a1.5 1.5 0 1 1 0 3h-37a1.5 1.5 0 1 1 0-3zm0-13h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3z"
+                      mask="url(&quot;#hkhkb&quot;)"></path>
+                <path fill="#2592ee" fill-opacity=".9"
+                      d="M8.5 33h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3zm0-13h37a1.5 1.5 0 1 1 0 3h-37a1.5 1.5 0 1 1 0-3zm0-13h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3z"></path>
+            </g>
+            <path fill="#bee1f3"
+                  d="M8.5 33h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3zm0-13h37a1.5 1.5 0 1 1 0 3h-37a1.5 1.5 0 1 1 0-3zm0-13h37a1.5 1.5 0 0 1 0 3h-37a1.5 1.5 0 0 1 0-3z"></path>
+        </g>
+    </g>
+</svg>

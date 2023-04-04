@@ -1,10 +1,12 @@
 <template>
-    123456
+    <footer>
+        footer
+    </footer>
 </template>
 
 <script>
 export default {
-    name: "test"
+    name: "HeaderComponent"
 }
 </script>
 
