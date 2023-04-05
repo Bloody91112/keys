@@ -22,15 +22,19 @@ const mutations = {
 
 const actions = {
     getCategory({commit}, id) {
+        commit('setLoading', true)
         axios.get(`/api/categories/${id}`)
             .then(res => {
                 commit('setCategory', res.data.data)
+                commit('setLoading', false)
             })
     },
     getCategories({commit}) {
+        commit('setLoading', true)
         axios.get('/api/categories')
             .then(res => {
                 commit('setCategories', res.data.data)
+                commit('setLoading', false)
             })
     }
 }

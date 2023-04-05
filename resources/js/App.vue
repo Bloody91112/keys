@@ -1,5 +1,9 @@
 <template>
+
     <div class="page-wrapper">
+        <Transition name="fade">
+            <PreloaderComponent v-if="loading"/>
+        </Transition>
         <div class="content">
             <HeaderComponent/>
         </div>
@@ -13,9 +17,14 @@
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
+import PreloaderComponent from "./components/PreloaderComponent.vue";
 export default {
     name: "App",
+    computed: {
+        loading(){ return this.$store.getters.loading }
+    },
     components: {
+        PreloaderComponent,
         HeaderComponent,
         FooterComponent
     }
@@ -23,6 +32,21 @@ export default {
 </script>
 
 <style lang="scss">
+
+ul, li{
+    margin: 0;
+    padding: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
 
 .page-wrapper{
     background-color: #1f143d;

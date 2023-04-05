@@ -5,7 +5,7 @@
             <div class="search">
                 <input id="search"
                        type="text"
-                       name="q"
+                       v-model="searchValue"
                        class="input-text algolia-search-input"
                        autocomplete="off"
                        spellcheck="false"
@@ -16,6 +16,9 @@
                         <img src="../../images/icons/search-glass.svg" alt="icon">
                     </span>
                 </div>
+                <ul ref="searchList" class="search-list">
+                    {{ searchResult }}
+                </ul>
             </div>
             <nav class="nav-top">
                 <ul>
@@ -66,10 +69,33 @@
 <script>
 export default {
     name: "HeaderComponent",
+    data(){
+        return {
+            searchValue: null,
+        }
+    },
+    watch: {
+        searchValue (to, from){
+            this.handleInput(to)
+        }
+    },
     mounted() {
         this.$store.dispatch('getCategories')
     },
+    methods: {
+        handleInput(text){
+            console.log('handleInput')
+            if (text !== '' && text.length > 2){
+                this.$store.dispatch('getSearchResult', text)
+                this.$refs.searchList.style.display = 'flex'
+            } else {
+                this.$refs.searchList.style.display = 'none'
+            }
+        },
+
+    },
     computed: {
+        searchResult(){ return this.$store.getters.searchResult },
         categories(){ return this.$store.getters.categories }
     }
 }
@@ -86,7 +112,6 @@ header {
         @media (max-width: 768px) {
             flex-direction: column;
             justify-content: center;
-
         }
 
         .logo {
@@ -108,10 +133,24 @@ header {
             align-items: center;
             justify-content: space-between;
             width: 520px;
+            position: relative;
             background-color: white;
             border-radius: 20px;
             padding: 5px 10px;
             margin: 0 10px;
+
+            .search-list{
+                position: absolute;
+                top: 55px;
+                display: none;
+                left: 0;
+                right: 0;
+                background-color:white;
+                height: 100px;
+                z-index: 10;
+                border-radius: 20px;
+                padding: 10px;
+            }
 
             @media (max-width: 768px) {
                 width: 100%;
