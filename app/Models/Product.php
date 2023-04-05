@@ -64,4 +64,26 @@ class Product extends Model
     {
         return Product::where('status_id', '=', ProductStatus::inactiveId())->get();
     }
+
+    public function getPreviewAttribute($value): string
+    {
+        return isset($value) ? url('storage/' . $value): '';
+    }
+
+    public function getPriceAttribute(): string
+    {
+        $promocodes = $this->promocodes;
+        return $promocodes->count() > 0 ? $promocodes->sortBy('price')->first()->price : '';
+    }
+
+    public function getPriceWithCurrencyAttribute($value): string
+    {
+        $value = $this->getPriceAttribute();
+        return $value !== '' ? $value . '$' : '';
+    }
+
+    public function getDiscountWithPercentageAttribute($value): string
+    {
+        return isset($this->discount) ? $this->discount . '%' : '';
+    }
 }

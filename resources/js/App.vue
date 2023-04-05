@@ -1,9 +1,11 @@
 <template>
     <div class="page-wrapper">
-        <HeaderComponent/>
-        <main>
+        <div class="content">
+            <HeaderComponent/>
+        </div>
+        <div class="content">
             <RouterView/>
-        </main>
+        </div>
         <FooterComponent/>
     </div>
 </template>
@@ -23,30 +25,30 @@ export default {
 <style lang="scss">
 
 .page-wrapper{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow: hidden;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1286px;
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
     background-color: #1f143d;
     color: #eee;
     font-family: montserrat,sans-serif;
     line-height: 1.5;
     font-size: 1.6rem;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
 
     @media (max-width: 768px) {
         font-size: 1.4rem
 
     }
 
-    main{
-        flex: 1 1 auto;
+    .content{
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1286px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%;
     }
+
 
 }
 </style>

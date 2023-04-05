@@ -1,6 +1,6 @@
 <template>
     <footer>
-        footer
+        <div class="footer-copyright">Copyright SKEYS.com 2023, all rights reserved</div>
     </footer>
 </template>
 
@@ -11,5 +11,10 @@ export default {
 </script>
 
 <style scoped>
-
+footer{
+    background: #0c0020;
+    margin-top: auto;
+    padding-top: 45px;
+    text-align: center;
+}
 </style>

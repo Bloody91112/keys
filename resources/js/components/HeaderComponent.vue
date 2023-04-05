@@ -1,10 +1,7 @@
 <template>
     <header>
         <div class="header-top">
-            <span class="nav-toggle">
-                <img src="../../images/icons/nav-toggle.svg" alt="toggle">
-            </span>
-            <a class="logo" href="#">SKEYS</a>
+            <RouterLink :to="{ name: 'index' }" class="logo">SKEYS</RouterLink>
             <div class="search">
                 <input id="search"
                        type="text"
@@ -52,64 +49,82 @@
                 </ul>
             </nav>
         </div>
-        <div class="header-bottom"></div>
+        <div class="header-bottom">
+            <nav>
+                <ul v-if="categories">
+                    <li v-for="category in categories" :key="category.id">
+                        <RouterLink :to="{ name:'categories.item', params: { id: category.id } }">
+                            {{ category.title }}
+                        </RouterLink>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 </template>
 
 <script>
 export default {
-    name: "HeaderComponent"
+    name: "HeaderComponent",
+    mounted() {
+        this.$store.dispatch('getCategories')
+    },
+    computed: {
+        categories(){ return this.$store.getters.categories }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 header {
-    padding: 10px 10px 0;
+    padding: 10px 0 0;
     .header-top {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         @media (max-width: 768px) {
-            justify-content: unset;
+            flex-direction: column;
+            justify-content: center;
+
         }
 
-        .nav-toggle{
-            display: none;
-
-            @media (max-width: 768px) {
-                display: block;
-            }
-        }
         .logo {
             text-decoration: unset;
             color: white;
             font-size: 2.5rem;
+            font-weight: 900;
+            transition: text-shadow .3s;
+
+            &:hover {
+                text-decoration: none;
+                text-shadow: 0 0 9px rgba(37,146,238,.9), 0 0 9px rgba(37,146,238,.9), 0 0 9px rgba(37,146,238,.9);
+            }
+
+
         }
         .search {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 420px;
+            width: 520px;
             background-color: white;
             border-radius: 20px;
             padding: 5px 10px;
+            margin: 0 10px;
 
             @media (max-width: 768px) {
-                display: none;
+                width: 100%;
             }
 
             input {
                 outline: none;
                 border: none;
+                width: 90%;
+
             }
         }
         .nav-top {
-
-            @media (max-width: 768px) {
-                margin-left: auto;
-            }
-
             ul{
                 margin: 0;
                 padding: 0;
@@ -119,7 +134,8 @@ header {
                 gap: 10px;
 
                 @media (max-width: 768px) {
-                    gap: 5px;
+                    margin-top: 10px;
+                    gap: 20px;
                 }
 
                 li {
@@ -147,6 +163,42 @@ header {
     }
 
     .header-bottom {
+        margin-top: 10px;
+        nav{
+            font-family: quantico,sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            font-weight: 300;
+
+            ul {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                flex-wrap: wrap;
+
+                li {
+                    margin: 0;
+                    padding: 0;
+
+                    a{
+                        padding: 4px 8px 20px;
+                        color: #fff;
+                        display: block;
+                        text-decoration: unset;
+                        white-space: nowrap;
+                        transition: text-shadow .3s;
+
+                        &:hover {
+                            text-decoration: none;
+                            text-shadow: 0 0 9px rgba(37,146,238,.9), 0 0 9px rgba(37,146,238,.9), 0 0 9px rgba(37,146,238,.9);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
