@@ -26,7 +26,6 @@ const actions = {
         axios.get(`/api/products/${id}`)
             .then( res  => {
                 commit('setProduct', res.data.data)
-                console.log(res.data.data)
                 commit('setLoading', false)
             })
     },

@@ -32,6 +32,10 @@ export default {
         transform: translate(-50%, -50%);
         text-transform: uppercase;
         text-shadow: 0 0 9px rgba(37, 146, 238, .9), 0 0 9px rgba(37, 146, 238, .9), 0 0 9px rgba(37, 146, 238, .9);
+
+        @media (max-width: 767px) {
+            top: 61%;
+        }
     }
 
     .lds-dual-ring {

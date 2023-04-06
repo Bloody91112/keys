@@ -33,6 +33,10 @@ export default {
 
 <style lang="scss">
 
+.inCart {
+    box-shadow: 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9);
+}
+
 ul {
     list-style-type: none;
 }

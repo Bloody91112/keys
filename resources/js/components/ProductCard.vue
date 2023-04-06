@@ -15,10 +15,11 @@
                         <a class="wishlist">
                             <img src="../../images/icons/card-wishlist.svg" alt="wishlist">
                         </a>
-                        <a class="cart">
+                        <div @click="this.$store.dispatch('toggleCartItem', { event: $event, id : product.id})"
+                             :class="['cart', cartItems.includes(product.id) ? ' inCart' : '' ]">
                             <img src="../../images/icons/card-cart.svg" alt="cart">
-                            <span class="cart-text">Buy now</span>
-                        </a>
+                            <span class="cart-text">Add to cart</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -29,17 +30,24 @@
 <script>
 export default {
     props: {
-      product: {
-          type: Object,
-          default: null,
-      }
+        product: {
+            type: Object,
+            default: null,
+        }
     },
-    name: "ProductCard"
+    name: "ProductCard",
+    computed: {
+        cartItems() {
+            return JSON.parse(localStorage.getItem('cartItems'))
+        }
+    },
+    methods: {}
 }
 </script>
 
 <style lang="scss" scoped>
-.product{
+
+.product {
     max-width: 18%;
     min-height: 100%;
     padding: 30px 0;
@@ -53,39 +61,40 @@ export default {
         padding: 15px 0;
     }
 
-    .thumb{
+    .thumb {
         display: flex;
         flex-direction: column;
         gap: 15px;
         min-height: 100%;
 
 
-        .image{
+        .image {
             display: block;
             text-decoration: none;
             position: relative;
             box-shadow: 0px 40px 23px -24px rgb(0 0 0);
             transition-duration: 0.5s;
 
-            &:hover{
+            &:hover {
                 transform: scale(1.1);
             }
 
-            img{
+            img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
-            .discount{
+
+            .discount {
                 display: block;
                 background-color: #e6224d;
-                box-shadow: 0 4px 0 rgba(230,34,77,.5);
+                box-shadow: 0 4px 0 rgba(230, 34, 77, .5);
                 color: #fff;
-                font-family: quantico,sans-serif;
+                font-family: quantico, sans-serif;
                 font-size: .9rem;
                 padding: 3px 6px;
                 position: absolute;
-                text-shadow: 0 0 8px rgba(255,255,255,.75);
+                text-shadow: 0 0 8px rgba(255, 255, 255, .75);
                 bottom: 5px;
                 z-index: 2;
 
@@ -97,7 +106,8 @@ export default {
                 }
             }
         }
-        .info{
+
+        .info {
             display: flex;
             justify-content: space-between;
             flex-direction: column;
@@ -117,7 +127,7 @@ export default {
                 padding: 10px;
             }
 
-            .product-title{
+            .product-title {
                 display: block;
                 text-decoration: none;
                 font-size: 1.4rem;
@@ -132,16 +142,17 @@ export default {
 
                 &:hover {
                     text-decoration: none;
-                    text-shadow: 0 0 20px rgba(37,146,238,.9), 0 0 20px rgba(37,146,238,.9), 0 0 20px rgba(37,146,238,.9);
+                    text-shadow: 0 0 20px rgba(37, 146, 238, .9), 0 0 20px rgba(37, 146, 238, .9), 0 0 20px rgba(37, 146, 238, .9);
                 }
 
                 @media (max-width: 768px) {
                     font-size: 0.8rem;
                 }
             }
-            .bottom{
-                .price{
-                    border-top: 1px solid rgba(255,255,255,.1);
+
+            .bottom {
+                .price {
+                    border-top: 1px solid rgba(255, 255, 255, .1);
                     display: block;
                     margin-top: auto;
                     padding-top: 15px;
@@ -151,7 +162,7 @@ export default {
                     min-height: 40px;
                     font-size: 1.2rem;
 
-                    @media (max-width: 767px){
+                    @media (max-width: 767px) {
                         margin-top: 4px;
                     }
 
@@ -165,21 +176,22 @@ export default {
 
 
                 }
-                .actions{
+
+                .actions {
                     display: flex;
                     gap: 15px;
                     justify-content: space-between;
                     align-items: center;
                     margin-top: 8px;
 
-                    @media (max-width: 1024px){
+                    @media (max-width: 1024px) {
                         gap: 5px;
                     }
 
-                    .wishlist{
+                    .wishlist {
                         border-radius: 3px;
                         background-color: #392a65;
-                        background-image: linear-gradient(to top,#392a65 0%,#58468d 100%);
+                        background-image: linear-gradient(to top, #392a65 0%, #58468d 100%);
                         padding: 3px 7px;
                         display: block;
                         margin: 0;
@@ -188,21 +200,22 @@ export default {
                         cursor: pointer;
                         transition-duration: 0.3s;
 
-                        &:hover{
-                            box-shadow: 0 0 10px rgba(63,48,110,.9), 0 0 10px rgba(63,48,110,.9), 0 0 10px rgba(63,48,110,.9);
+                        &:hover {
+                            box-shadow: 0 0 10px rgba(63, 48, 110, .9), 0 0 10px rgba(63, 48, 110, .9), 0 0 10px rgba(63, 48, 110, .9);
                         }
 
-                        @media (max-width: 767px){
+                        @media (max-width: 767px) {
                             padding: 5px 7px;
                         }
 
-                        img{
+                        img {
                             width: 20px;
                             height: auto;
                         }
 
                     }
-                    .cart{
+
+                    .cart {
                         flex: 1 1 auto;
                         text-decoration: unset;
                         font-size: 1rem;
@@ -215,22 +228,18 @@ export default {
                         cursor: pointer;
                         border-radius: 3px;
                         background-color: #1ad396;
-                        background-image: linear-gradient(to top,#0cbb80 0%,#1ad496 100%);
+                        background-image: linear-gradient(to top, #0cbb80 0%, #1ad496 100%);
                         padding: 6px;
                         text-transform: none;
                         width: 100%;
                         transition-duration: 0.3s;
 
-                        &:hover{
-                            box-shadow: 0 0 5px rgba(20,203,141,.9), 0 0 5px rgba(20,203,141,.9), 0 0 5px rgba(20,203,141,.9);
-                        }
-
-                        @media (max-width: 1024px){
+                        @media (max-width: 1024px) {
                             gap: 3px;
                         }
 
-                        .cart-text{
-                            @media (max-width: 767px){
+                        .cart-text {
+                            @media (max-width: 767px) {
                                 display: none;
                             }
                         }

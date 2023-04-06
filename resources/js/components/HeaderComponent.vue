@@ -80,6 +80,7 @@
                                 <img src="../../images/icons/cart.svg" width="39" height="42" alt="cart">
                                 <img class="header-link-hover" src="../../images/icons/cart.svg" width="39" height="42"
                                      alt="cart">
+                                <span v-show="cartItemsCount > 0" class="counter">{{ cartItemsCount }}</span>
                             </RouterLink>
                         </div>
                     </li>
@@ -128,6 +129,7 @@ export default {
                 list.style.display = 'none'
             }
         })
+
     },
     methods: {
         handleInput(text) {
@@ -145,6 +147,13 @@ export default {
         },
         categories() {
             return this.$store.getters.categories
+        },
+        cartItemsCount(){
+          let cartItems = JSON.parse(localStorage.getItem('cartItems'));
+          if (cartItems && cartItems.length > 0){
+              return cartItems.length
+          }
+          return 0
         }
     }
 }
@@ -284,6 +293,20 @@ header {
                             left: 0;
                             transition: opacity .3s;
                         }
+
+                        .counter{
+                            position: absolute;
+                            top: 10px;
+                            right: -10px;
+                            padding: 2px 8px;
+                            border-radius: 50%;
+                            background-color: rgba(37, 146, 238, .9);
+                            font-size: 0.9rem;
+                            font-weight: 600;
+                            color: white;
+                            text-decoration: unset;
+
+                        }
                     }
                 }
             }
@@ -321,6 +344,10 @@ header {
                         text-decoration: unset;
                         white-space: nowrap;
                         transition: text-shadow .3s;
+
+                        @media (max-width: 768px) {
+                            padding: 4px 8px;
+                        }
 
                         &:hover {
                             text-decoration: none;

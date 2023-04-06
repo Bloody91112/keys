@@ -19,8 +19,10 @@
                         </div>
                         <div class="price" v-else>No promocodes</div>
                     </div>
-                    <button v-if="product.priceWithCurrency" class="cart">
-                        <span class="label">Buy now</span>
+                    <button v-if="product.priceWithCurrency"
+                            @click="this.$store.dispatch('toggleCartItem', { event: $event, id : product.id})"
+                            :class="['cart', cartItems.includes(product.id) ? ' inCart' : '' ]">
+                        <span class="label">Add to cart</span>
                         <img width="28" height="28" src="../../../images/icons/card-cart.svg" alt="cart">
                     </button>
                 </div>
@@ -75,6 +77,9 @@ export default {
     computed: {
         product() {
             return this.$store.getters.product
+        },
+        cartItems() {
+            return JSON.parse(localStorage.getItem('cartItems'))
         }
     },
     mounted() {
@@ -99,6 +104,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 section {
     margin-top: 30px;
 
@@ -134,16 +140,17 @@ section {
                 top: 0;
                 right: 0;
                 background-color: #392a65;
-                background-image: linear-gradient(to top,#392a65 0%,#58468d 100%);
-                padding:5px 11px;
+                background-image: linear-gradient(to top, #392a65 0%, #58468d 100%);
+                padding: 5px 11px;
                 transition-duration: 0.3s;
                 cursor: pointer;
 
-                &:hover{
-                    box-shadow: 0 0 5px rgba(83,65,134, .9), 0 0 5px rgba(83,65,134, .9), 0 0 5px rgba(83,65,134, .9), 0 0 5px rgba(83,65,134, .9);
+                &:hover {
+                    box-shadow: 0 0 5px rgba(83, 65, 134, .9), 0 0 5px rgba(83, 65, 134, .9), 0 0 5px rgba(83, 65, 134, .9), 0 0 5px rgba(83, 65, 134, .9);
                 }
 
-                img{}
+                img {
+                }
             }
         }
 
@@ -267,7 +274,7 @@ section {
                 border-radius: 5px;
                 margin-top: 15px;
 
-                .property{
+                .property {
                     border-bottom: 1px solid #4c4364;
                     align-items: center;
                     display: flex;
@@ -276,11 +283,12 @@ section {
                     letter-spacing: .05em;
                     text-transform: uppercase;
 
-                    .property-title{
+                    .property-title {
                         font-weight: 800;
                         flex: 0 0 auto;
                     }
-                    .property-value{
+
+                    .property-value {
                         flex: 1 1 auto;
                         display: flex;
                         column-gap: 10px;
@@ -300,13 +308,14 @@ section {
         border: 1px solid #4c4364;
         padding: 30px;
 
-        .description-block{
-            h3{
+        .description-block {
+            h3 {
                 margin-bottom: 20px;
                 font-size: 2rem;
                 font-weight: 800;
             }
-            .text{
+
+            .text {
                 margin-bottom: 20px;
             }
         }
