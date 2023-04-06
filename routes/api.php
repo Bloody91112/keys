@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ProductCategoryController;
+use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ProductTagController;
 use App\Http\Controllers\API\SearchController;
 use Illuminate\Http\Request;
@@ -15,3 +16,4 @@ Route::get('search/{q}', [ SearchController::class, 'index' ])->name('search.ind
 
 Route::resource('tags', ProductTagController::class)->only(['index', 'show']);
 Route::resource('categories', ProductCategoryController::class)->only(['index', 'show']);
+Route::resource('products', ProductController::class)->only(['index', 'show']);

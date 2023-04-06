@@ -23,8 +23,9 @@ const mutations = {
 const actions = {
     getSearchResult({commit}, value){
         commit('setLoading', true)
-        axios.get(`api/search/${value}`).then( res => {
+        axios.get(`/api/search/${value}`).then( res => {
             commit('setSearchResult', res.data.data)
+            console.log(res.data.data)
             commit('setLoading', false)
         })
     }

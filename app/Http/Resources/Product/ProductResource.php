@@ -25,8 +25,11 @@ class ProductResource extends JsonResource
             'preview' => $this->preview,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'category_id' => $this->category_id,
-            'version_id' => $this->version_id,
+            'category' => $this->category->toArray(),
+            'version' => $this->version->toArray(),
+            'tags' => $this->tags->toArray(),
+            'promocodes' => $this->promocodes->toArray(),
+            'promocodesCount' => $this->promocodes->count(),
             'price' => $this->price,
             'priceWithCurrency' => $this->priceWithCurrency
         ];

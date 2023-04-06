@@ -9,11 +9,6 @@ const router = createRouter({
             component: () => import("../views/index.vue"),
         },
         {
-            path: "/search",
-            name: "search.index",
-            component: () => import("../views/search/index.vue"),
-        },
-        {
             path: "/account",
             name: "account.index",
             component: () => import("../views/account/index.vue"),
@@ -29,6 +24,11 @@ const router = createRouter({
             component: () => import("../views/payment/index.vue"),
         },
         {
+            path: "/wishlist",
+            name: "wishlist.index",
+            component: () => import("../views/wishlist/index.vue"),
+        },
+        {
             path: "/categories/:id",
             name: "categories.item",
             component: () => import("../views/category/item.vue"),
@@ -37,6 +37,11 @@ const router = createRouter({
             path: "/tags/:id",
             name: "tags.item",
             component: () => import("../views/tag/item.vue"),
+        },
+        {
+            path: "/products/:id",
+            name: "products.item",
+            component: () => import("../views/product/item.vue"),
         },
 
     ],

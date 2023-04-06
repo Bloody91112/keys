@@ -1,6 +1,7 @@
 <template>
     <div class="preloader-bg">
         <div class="lds-dual-ring"></div>
+        <div class="loading">Loading...</div>
     </div>
 </template>
 
@@ -19,7 +20,19 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,1);
+
+    .loading{
+        font-family: quantico, sans-serif;
+        font-weight: 800;
+        display: inline-block;
+        position: absolute;
+        top: 59%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-transform: uppercase;
+        text-shadow: 0 0 9px rgba(37, 146, 238, .9), 0 0 9px rgba(37, 146, 238, .9), 0 0 9px rgba(37, 146, 238, .9);
+    }
 
     .lds-dual-ring {
         display: inline-block;

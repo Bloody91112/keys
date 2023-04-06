@@ -1,12 +1,14 @@
 <template>
-    <div class="product">
+    <div v-if="product" class="product">
         <div class="thumb">
-            <a href="#" class="image">
+            <RouterLink :to="{ name: 'products.item', params: { id: product.id } }" class="image">
                 <img :src="product.preview" alt="preview">
                 <span v-if="product.discount" class="discount">{{ product.discountWithPercentage }}</span>
-            </a>
+            </RouterLink>
             <div class="info">
-                <a href="#" class="product-title">{{ product.title }}</a>
+                <RouterLink :to="{ name: 'products.item', params: { id: product.id } }" class="product-title">
+                    {{ product.title }}
+                </RouterLink>
                 <div class="bottom">
                     <div class="price">{{ product.priceWithCurrency }}</div>
                     <div class="actions">
@@ -183,6 +185,12 @@ export default {
                         margin: 0;
                         text-decoration: none;
                         flex: 0 0 auto;
+                        cursor: pointer;
+                        transition-duration: 0.3s;
+
+                        &:hover{
+                            box-shadow: 0 0 10px rgba(63,48,110,.9), 0 0 10px rgba(63,48,110,.9), 0 0 10px rgba(63,48,110,.9);
+                        }
 
                         @media (max-width: 767px){
                             padding: 5px 7px;
@@ -211,6 +219,11 @@ export default {
                         padding: 6px;
                         text-transform: none;
                         width: 100%;
+                        transition-duration: 0.3s;
+
+                        &:hover{
+                            box-shadow: 0 0 5px rgba(20,203,141,.9), 0 0 5px rgba(20,203,141,.9), 0 0 5px rgba(20,203,141,.9);
+                        }
 
                         @media (max-width: 1024px){
                             gap: 3px;

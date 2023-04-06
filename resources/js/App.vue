@@ -33,14 +33,20 @@ export default {
 
 <style lang="scss">
 
+ul {
+    list-style-type: none;
+}
+
 ul, li{
     margin: 0;
     padding: 0;
 }
 
-.fade-enter-active,
+.fade-enter-active{
+    transition: opacity 0.2s ease;
+}
 .fade-leave-active {
-    transition: opacity 0.5s ease;
+    transition: opacity 1s ease;
 }
 
 .fade-enter-from,

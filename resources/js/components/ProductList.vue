@@ -3,7 +3,7 @@
         <ProductCard v-for="product in products" :key="product.id" :product="product"/>
     </div>
     <div v-else class="no-items">
-        No items, try something else :)
+        No items, see something else :)
     </div>
 </template>
 

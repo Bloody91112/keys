@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <div class="footer-copyright">Copyright SKEYS.com 2023, all rights reserved</div>
+        <a href="https://github.com/Bloody91112/keys">Github</a>
     </footer>
 </template>
 
@@ -10,11 +10,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 footer{
     background: #0c0020;
     margin-top: auto;
-    padding-top: 45px;
+    padding: 25px 0;
     text-align: center;
+
+    a{
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        transition-duration: 0.3s;
+
+        &:hover{
+            text-shadow: 0 0 9px rgba(37, 146, 238, .9), 0 0 9px rgba(37, 146, 238, .9), 0 0 9px rgba(37, 146, 238, .9);
+
+        }
+    }
 }
 </style>
