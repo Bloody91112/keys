@@ -59,12 +59,12 @@ class User extends Authenticatable
         return $this->role->access_level >= 10;
     }
 
-    public function avatar(): string
+    public function getAvatarAttribute($value): string
     {
-        if (isset($this->avatar)){
-            return url('storage/' . $this->avatar);
+        if (isset($value)){
+            return url('storage/' . $value);
         } else {
-            return url('cat.png');
+            return url('storage/images/users/cat.png');
         }
     }
 }

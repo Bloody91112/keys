@@ -16,7 +16,7 @@
                             <img src="../../images/icons/card-wishlist.svg" alt="wishlist">
                         </a>
                         <div @click="this.$store.dispatch('toggleCartItem', { event: $event, id : product.id})"
-                             :class="['cart', cartItems.includes(product.id) ? ' inCart' : '' ]">
+                             :class="['cart', cartItems?.includes(product.id) ? ' inCart' : '' ]">
                             <img src="../../images/icons/card-cart.svg" alt="cart">
                             <span class="cart-text">Add to cart</span>
                         </div>

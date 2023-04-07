@@ -21,7 +21,7 @@
                     </div>
                     <button v-if="product.priceWithCurrency"
                             @click="this.$store.dispatch('toggleCartItem', { event: $event, id : product.id})"
-                            :class="['cart', cartItems.includes(product.id) ? ' inCart' : '' ]">
+                            :class="['cart', cartItems?.includes(product.id) ? ' inCart' : '' ]">
                         <span class="label">Add to cart</span>
                         <img width="28" height="28" src="../../../images/icons/card-cart.svg" alt="cart">
                     </button>

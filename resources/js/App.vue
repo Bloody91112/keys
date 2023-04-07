@@ -23,6 +23,9 @@ export default {
     computed: {
         loading(){ return this.$store.getters.loading }
     },
+    created() {
+        this.$store.dispatch('initializeUser')
+    },
     components: {
         PreloaderComponent,
         HeaderComponent,
@@ -34,7 +37,8 @@ export default {
 <style lang="scss">
 
 .inCart {
-    box-shadow: 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9);
+    outline: 1px solid white;
+    box-shadow: 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9)
 }
 
 ul {

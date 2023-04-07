@@ -47,9 +47,12 @@ const actions = {
         cartCounter.innerHTML = cartItemsCount
 
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
-
+    },
+    toggleWishlistItem({},{event, id}) {
+        let button = event.target.closest('.wishlist')
 
     }
+
 }
 
 export default {
