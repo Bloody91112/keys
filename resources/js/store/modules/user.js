@@ -29,9 +29,8 @@ const actions = {
             axios.get('/api/user').then(res => {
                 commit('setUser', res.data.data)
             }).catch(err => {
-                if (err.response.status === 401 || err.response.status === 419) {
-                    localStorage.removeItem('x_xsrf_token')
-                }
+                localStorage.removeItem('x_xsrf_token')
+                commit('setUser', null)
             })
         }
     }
