@@ -29,13 +29,8 @@ export default {
     data() {
         return {}
     },
-    mounted() {
-        this.$store.dispatch('checkAuth')
-    },
     computed: {
-        user() {
-            return this.$store.getters.user
-        }
+        user() { return this.$store.getters.user }
     }
 }
 </script>

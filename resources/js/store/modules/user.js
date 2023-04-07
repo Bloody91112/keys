@@ -17,38 +17,21 @@ const mutations = {
 }
 
 const actions = {
-    logout({commit}){
-        let token = localStorage.getItem('x_xsrf_token')
-        if (token){
-            localStorage.removeItem('x_xsrf_token')
-        }
+    logout({commit}) {
+        const token = localStorage.getItem('x_xsrf_token')
+        if (token) localStorage.removeItem('x_xsrf_token')
         commit('setUser', null)
         router.push({name: 'index'})
     },
-    async initializeUser({commit}) {
-        let token = localStorage.getItem('x_xsrf_token')
+    initializeUser({commit}) {
+        const token = localStorage.getItem('x_xsrf_token')
         if (token) {
-           let data = await axios.get('/api/user')
-           commit('setUser', data.data.data)
-           return data.data.data;
-        }
-        return null
-    },
-    checkAuth({commit, getters, dispatch }){
-        const routeName = router.currentRoute.value.name
-        const user = getters.user
-        /** on auth routes redirect back if user authenticated */
-        if (routeName === 'auth.login' || routeName === 'auth.register'){
-            if (user === null){
-                dispatch('initializeUser').then(res => {
-                    if (res) router.back()
-                })
-
-            }
-        /** other routes - redirect to login if not authenticated */
-        } else if (user === null){
-            dispatch('initializeUser').then( res => {
-                if (!res) router.push({'name': 'auth.login'})
+            axios.get('/api/user').then(res => {
+                commit('setUser', res.data.data)
+            }).catch(err => {
+                if (err.response.status === 401 || err.response.status === 419) {
+                    localStorage.removeItem('x_xsrf_token')
+                }
             })
         }
     }

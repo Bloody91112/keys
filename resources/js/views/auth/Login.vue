@@ -33,9 +33,6 @@ export default {
             password: null,
         }
     },
-    beforeCreate() {
-        this.$store.dispatch('checkAuth')
-    },
     methods: {
         login() {
             axios.get('/sanctum/csrf-cookie')
