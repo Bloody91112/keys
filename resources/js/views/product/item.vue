@@ -3,7 +3,10 @@
         <div class="product">
             <div class="image">
                 <img :src="product.preview" alt="image">
-                <div class="wishlist">
+                <div
+                    @click="this.$store.dispatch('toggleWishlistItem', { event: $event, id : product.id })"
+                    :class="[ 'wishlist', inWishlist ? 'inWishlist' : '' ]"
+                >
                     <img src="../../../images/icons/wishlist-product.svg" alt="wishlist">
                 </div>
             </div>
@@ -80,6 +83,9 @@ export default {
         },
         cartItems() {
             return JSON.parse(localStorage.getItem('cartItems'))
+        },
+        inWishlist() {
+            return !!this.$store.getters.user?.favorites.find( item => this.product?.id === item.product.id)
         }
     },
     mounted() {
@@ -222,7 +228,7 @@ section {
                         text-transform: uppercase;
 
                         @media (max-width: 767px) {
-                            font-size: 2.5rem;
+                            font-size: 1.5rem;
                         }
                     }
                 }
@@ -286,6 +292,10 @@ section {
                     .property-title {
                         font-weight: 800;
                         flex: 0 0 auto;
+
+                        @media (max-width: 767px) {
+                            font-size: 1rem;
+                        }
                     }
 
                     .property-value {
@@ -293,6 +303,10 @@ section {
                         display: flex;
                         column-gap: 10px;
                         padding-left: 15px;
+
+                        @media (max-width: 767px) {
+                            font-size: 1rem;
+                        }
                     }
                 }
             }
@@ -308,11 +322,18 @@ section {
         border: 1px solid #4c4364;
         padding: 30px;
 
+        @media (max-width: 767px) {
+            padding: 15px;
+        }
+
         .description-block {
             h3 {
                 margin-bottom: 20px;
                 font-size: 2rem;
                 font-weight: 800;
+                @media (max-width: 767px) {
+                    font-size: 1.5rem;
+                }
             }
 
             .text {

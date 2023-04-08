@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <a href="https://github.com/Bloody91112/keys">Github</a>
+        <a target="_blank" href="https://github.com/Bloody91112/keys">Github</a>
     </footer>
 </template>
 

@@ -70,7 +70,7 @@ router.beforeEach(( to, from, next )=> {
     }
     /** Not authorized user */
     else {
-        const protectedRoutes = ['account.index', 'cart.index', 'payment.index', 'wishlist.index']
+        const protectedRoutes = ['account.index', 'payment.index', 'wishlist.index']
         if (protectedRoutes.includes(to.name)){
             return next({name: 'auth.login'})
         }

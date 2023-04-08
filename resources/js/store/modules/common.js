@@ -48,11 +48,46 @@ const actions = {
 
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
     },
-    toggleWishlistItem({},{event, id}) {
+    toggleWishlistItem({getters,dispatch},{event, id}) {
         let button = event.target.closest('.wishlist')
 
-    }
+        const token = localStorage.getItem('x_xsrf_token')
+        if (token){
+            button.style.pointerEvents = 'none'
+            let searchResult = {
+                status: false,
+                itemId: null
+            };
 
+            getters.user.favorites.forEach( favorite => {
+                if (favorite.product.id === id) {
+                    searchResult.status = true;
+                    searchResult.itemId = favorite.id;
+                }
+            })
+
+            if (searchResult.status){
+                axios.delete(`/api/favorites/${searchResult.itemId}`).then( res => {
+                    const item = res.data.data
+                    button.classList.remove('inWishlist')
+                    button.style.pointerEvents = 'unset'
+                    dispatch('initializeUser')
+                })
+            } else {
+                axios.post('/api/favorites', { product_id: id }).then( res => {
+                    const item = res.data.data
+                    button.classList.add('inWishlist')
+                    button.style.pointerEvents = 'unset'
+                    dispatch('initializeUser')
+                })
+            }
+
+        } else {
+            router.push({name: 'auth.login'})
+        }
+
+
+    }
 }
 
 export default {

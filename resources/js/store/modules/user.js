@@ -26,11 +26,14 @@ const actions = {
     initializeUser({commit}) {
         const token = localStorage.getItem('x_xsrf_token')
         if (token) {
+            commit('setLoading',true)
             axios.get('/api/user').then(res => {
                 commit('setUser', res.data.data)
+                commit('setLoading',false)
             }).catch(err => {
                 localStorage.removeItem('x_xsrf_token')
                 commit('setUser', null)
+                commit('setLoading',false)
             })
         }
     }

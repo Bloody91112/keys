@@ -12,9 +12,12 @@
                 <div class="bottom">
                     <div class="price">{{ product.priceWithCurrency }}</div>
                     <div class="actions">
-                        <a class="wishlist">
+                        <div
+                            @click="this.$store.dispatch('toggleWishlistItem', { event: $event, id : product.id })"
+                            :class="[ 'wishlist', inWishlist ? 'inWishlist' : '' ]"
+                        >
                             <img src="../../images/icons/card-wishlist.svg" alt="wishlist">
-                        </a>
+                        </div>
                         <div @click="this.$store.dispatch('toggleCartItem', { event: $event, id : product.id})"
                              :class="['cart', cartItems?.includes(product.id) ? ' inCart' : '' ]">
                             <img src="../../images/icons/card-cart.svg" alt="cart">
@@ -37,8 +40,9 @@ export default {
     },
     name: "ProductCard",
     computed: {
-        cartItems() {
-            return JSON.parse(localStorage.getItem('cartItems'))
+        cartItems() { return JSON.parse(localStorage.getItem('cartItems')) },
+        inWishlist() {
+            return !!this.$store.getters.user?.favorites.find( item => this.product?.id === item.product.id)
         }
     },
     methods: {}

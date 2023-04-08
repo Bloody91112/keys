@@ -16,6 +16,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('api.logout');
 Route::post('/register', [RegisterController::class, 'register'])->name('api.register');
 
 Route::get('search/{q}', [ SearchController::class, 'index' ])->name('search.index');
+Route::post('search/products', [ SearchController::class, 'product' ])->name('search.product');
 
 Route::resource('tags', ProductTagController::class)->only(['index', 'show']);
 Route::resource('categories', ProductCategoryController::class)->only(['index', 'show']);

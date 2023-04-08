@@ -62,6 +62,7 @@
                                 <img src="../../images/icons/wishlist.svg" width="39" height="42" alt="wishlist">
                                 <img class="header-link-hover" src="../../images/icons/wishlist.svg" width="39"
                                      height="42" alt="wishlist">
+                                <span v-show="wishlistItemsCount" class="counter">{{ wishlistItemsCount }}</span>
                             </RouterLink>
                         </div>
                     </li>
@@ -154,6 +155,9 @@ export default {
               return cartItems.length
           }
           return 0
+        },
+        wishlistItemsCount(){
+            return this.$store.getters.user?.favorites?.length
         }
     }
 }

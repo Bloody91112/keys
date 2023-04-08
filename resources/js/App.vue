@@ -41,6 +41,11 @@ export default {
     box-shadow: 0 0 15px rgba(20, 203, 141, .9), 0 0 15px rgba(20, 203, 141, .9)
 }
 
+.inWishlist{
+    outline: 1px solid white;
+    box-shadow: 0 0 15px #392a65, 0 0 15px #392a65
+}
+
 ul {
     list-style-type: none;
 }
@@ -72,9 +77,18 @@ ul, li{
     min-height: 100vh;
     flex-direction: column;
     overflow: hidden;
+    background-image: url(../images/red-light.png),url(../images/blue-light.png);
+    background-position: left 115px,right 115px;
+    background-size: 100px auto;
+    background-repeat: no-repeat;
+
+    @media (min-width: 1024px){
+        background-size: auto;
+    }
 
     @media (max-width: 768px) {
-        font-size: 1.4rem
+        font-size: 1.4rem;
+        background-size: 200px auto;
 
     }
 
