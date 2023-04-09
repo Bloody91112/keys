@@ -5,6 +5,7 @@ import category from "./modules/category"
 import product from "./modules/product"
 import user from "./modules/user";
 import cart from "./modules/cart";
+import payment from "./modules/payment";
 
 const store = createStore({
     modules: {
@@ -13,7 +14,8 @@ const store = createStore({
         category,
         product,
         user,
-        cart
+        cart,
+        payment
     }
 })
 

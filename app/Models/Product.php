@@ -76,6 +76,12 @@ class Product extends Model
         return $promocodes->count() > 0 ? $promocodes->sortBy('price')->first()->price : '';
     }
 
+    public function getFirstPromocodeAttribute(): string
+    {
+        $promocodes = $this->promocodes;
+        return $promocodes->count() > 0 ? $promocodes->sortBy('price')->first() : '';
+    }
+
     public function getPriceWithCurrencyAttribute($value): string
     {
         $value = $this->getPriceAttribute();

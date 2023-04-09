@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\FavoriteController;
+use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ProductCategoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ProductTagController;
@@ -24,6 +25,8 @@ Route::resource('products', ProductController::class)->only(['index', 'show']);
 Route::resource('user', UserController::class)->only(['index']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
+
     Route::resource('favorites', FavoriteController::class)->only(['store', 'destroy']);
+    Route::resource('payments', PaymentController::class)->only(['store']);
 });
 

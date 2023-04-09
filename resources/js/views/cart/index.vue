@@ -41,7 +41,7 @@
                     <span class="value">{{ totalPrice }}$</span>
                 </div>
             </div>
-            <button id="payment">Pay</button>
+            <button @click="makePayment()" id="payment">Pay</button>
         </div>
     </section>
 </template>
@@ -49,6 +49,7 @@
 <script>
 import TitleComponent from "../../components/TitleComponent.vue";
 import ProductList from "../../components/ProductList.vue";
+import router from "../../router";
 
 export default {
     name: "index.vue",
@@ -77,8 +78,25 @@ export default {
             cartItems = cartItems.filter(itemId => itemId !== id)
             localStorage.setItem('cartItems', JSON.stringify(cartItems))
             this.$store.dispatch('getCartProducts')
+        },
+        makePayment(){
+            let token = localStorage.getItem('x_xsrf_token')
+            if (!token){
+                router.push({ name: 'auth.login' })
+            }
+
+            let ids = [];
+            this.cartProducts.forEach( item => {
+                if (item.promocode){
+                    ids.push(JSON.parse(item.promocode).id)
+                }
+            } )
+
+            if (ids.length > 0){
+                this.$store.dispatch('makePayment', ids )
+            }
         }
-    }
+    },
 }
 </script>
 
